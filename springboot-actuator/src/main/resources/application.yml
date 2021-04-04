@@ -1,0 +1,14 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /actuator
+
+# actuator config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]
+  endpoint:
+    health:
+      show-details: always

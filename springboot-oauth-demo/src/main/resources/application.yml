@@ -1,0 +1,16 @@
+# server
+server: 
+  port: 10000
+  servlet:
+    session:
+      timeout: 2520000
+    # 服务访问根域名
+#    context-path: /sod
+      
+
+security:
+  oauth2:
+    client:
+      client-id: test
+      client-secret: test1234
+      registered-redirect-uri: http://mrbird.cc

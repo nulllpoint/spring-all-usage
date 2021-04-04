@@ -1,0 +1,18 @@
+#  Administration Law Execute Process
+administrationlawexecute:
+  nodes:
+    - id: "filing-case-audit_submit"
+      name: "立案申请"
+      fallback-able: true
+      next:
+        - condition: "pass"
+          value: "filing-case-audit_department"
+
+    - id: "filing-case-audit_department"
+      name: "立案审核-科室"
+      fallback-able: true
+      next:
+        - condition: "pass"
+          value: "filing-case-audit_legal"
+        - condition: "nopass"
+          value: "filing-case-audit_submit"

@@ -1,0 +1,47 @@
+server:
+  port: 9010
+spring:
+  application:
+    name: gateway-demo  # 服务名
+
+  cloud:
+    # gateway config
+    gateway:
+      # 跨域配置
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowCredentials: true
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      # 服务发现配置
+      discovery:
+        locator:
+          enabled: true # 结合服务发现组件, 开启通过其他服务的 service id 来转发服务请求, 默认false
+          lower-case-service-id: true # 开启匹配小写 服务实例名 service id, 默认false
+      # 路由地址配置
+      routes:
+        - id: eureka-client-demo
+          uri: lb://eureka-client-demo
+          predicates:
+            - Path=/nullpoint/eureka-client/api/**
+          filters:
+            - StripPrefix=3
+
+# eureka client config
+eureka:
+  client:
+    service-url:
+      defaultZone: http://nullpoint:eureka@localhost:8761/eureka/
+
+# actuator config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]
+  endpoint:
+    health:
+      show-details: always
+

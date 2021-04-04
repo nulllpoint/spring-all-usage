@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>java-spring-all-demo</artifactId>
+		<groupId>com.demo</groupId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath/>
+	</parent>
+	<artifactId>springboot-security-demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>springboot-security-demo</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<jdk.version>1.8</jdk.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.slf4j-version>1.7.25</org.slf4j-version>
+		<log4j-to-slf4j.version>2.10.0</log4j-to-slf4j.version>
+		<slf4j.version>1.7.2</slf4j.version>
+		<logback.version>1.2.3</logback.version>
+		<lombok.version>1.18.8</lombok.version>
+		<junit.version>4.12</junit.version>
+		<commons-codec.version>1.13</commons-codec.version>
+		<commons-lang3.version>3.9</commons-lang3.version>
+		<commons-beanutils.version>1.9.3</commons-beanutils.version>
+		<wstx-asl.version>4.0.6</wstx-asl.version>
+		<bcprov.version>1.46</bcprov.version>
+		<xfire-core.version>1.2.6</xfire-core.version>
+		<jjwt.version>0.9.1</jjwt.version>
+		<guava.version>28.0-jre</guava.version>
+		<druid.version>1.1.18</druid.version>
+		<json-lib.version>2.4</json-lib.version>
+		<pagehelper.version>1.2.12</pagehelper.version>
+		<pool2.version>2.4.2</pool2.version>
+		<jedis.version>2.9.1</jedis.version>
+		<fastjson.version>1.2.59</fastjson.version>
+		<jmimemagic.version>0.1.2</jmimemagic.version>
+		<qiniu.version>7.2.23</qiniu.version>
+		<google-zxing.version>3.4.0</google-zxing.version>
+		<alipay.version>3.7.110.ALL</alipay.version>
+		<aliyun-core.version>4.4.2</aliyun-core.version>
+		<aliyun-push.version>3.10.1</aliyun-push.version>
+		<aliyun-dysmsapi.version>1.1.0</aliyun-dysmsapi.version>
+		<pooled-jms.version>1.0.6</pooled-jms.version>
+		<dom4j.version>1.6.1</dom4j.version>
+		<hibernate.version>4.2.0.Final</hibernate.version>
+		<swagger.version>2.9.2</swagger.version>
+		<swagger-bootstrap-ui.version>1.9.5</swagger-bootstrap-ui.version>
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<mybatisplus.version>3.1.2</mybatisplus.version>
+		<log4j-version>1.2.14</log4j-version>
+		<orika.version>1.5.4</orika.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<apache-poi.version>3.15</apache-poi.version>
+		<jedis.version>2.9.1</jedis.version>
+		<lettuce-pool-verion>2.6</lettuce-pool-verion>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.security.oauth</groupId> -->
+		<!-- <artifactId>spring-security-oauth2</artifactId> -->
+		<!-- <version>2.3.4.RELEASE</version> -->
+		<!-- </dependency> -->
+
+		<!-- socail login -->
+		<dependency>
+		    <groupId>at.molindo.social</groupId>
+		    <artifactId>spring-social-config</artifactId>
+		    <version>1.1.0.RELEASE</version>
+		</dependency>
+		<!-- jedis客户端 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!-- lettuce pool 缓存连接池 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+		</dependency>
+		<!-- lombok 插件 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<!-- commons工具包依赖 -->
+		<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <!-- <version>3.7</version> -->
+        </dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

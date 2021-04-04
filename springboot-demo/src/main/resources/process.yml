@@ -1,0 +1,223 @@
+# 该yml文件中 配置 流程节点
+
+# 行政执法流程配置
+administrationLawExecute:
+  nodes:
+    # 立案 阶段 -------------------------------------------------------------------------------------------
+    - nodeId: "filingCase_apply"
+      nodeName: "立案审批"
+      nodeCode: 1000
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "filingCase_department_audit"
+
+    - nodeId: "filingCase_department_audit"
+      nodeName: "立案审批(科室)"
+      nodeCode: 1001
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "filingCase_legal_audit"
+
+    - nodeId: "filingCase_legal_audit"
+      nodeName: "立案审批(法制)"
+      nodeCode: 1002
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "filingCase_chargePerson_audit"
+
+    - nodeId: "filingCase_chargePerson_audit"
+      nodeName: "立案审批(负责人)"
+      nodeCode: 1003
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "handleCase_takeEvidence"
+
+    # 案件处理 阶段 ---------------------------------------------------------------------------------
+
+    - nodeId: "handleCase_takeEvidence"
+      nodeName: "调查取证"
+      nodeCode: 2000
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "handleCase_department_audit"
+
+    - nodeId: "handleCase_department_audit"
+      nodeName: "案件处理(科室)"
+      nodeCode: 2001
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "handleCase_legal_audit"
+
+    - nodeId: "handleCase_legal_audit"
+      nodeName: "案件处理(法制)"
+      nodeCode: 2002
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "handleCase_chargePerson_audit"
+
+    - nodeId: "handleCase_chargePerson_audit"
+      nodeName: "案件处理(负责人)"
+      nodeCode: 2003
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "administrationPunish_notify"
+
+    # 行政处罚 阶段 ---------------------------------------------------------------------------------
+    - nodeId: "administrationPunish_notify"
+      nodeName: "行政处罚告知"
+      nodeCode: 3000
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "administrationPunish_stateAndDefend"
+
+    - nodeId: "administrationPunish_stateAndDefend"
+      nodeName: "陈述申辩情况"
+      nodeCode: 3001
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "administrationPunish_department_audit"
+
+    - nodeId: "administrationPunish_department_audit"
+      nodeName: "行政处罚决定审批(科室)"
+      nodeCode: 3002
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "administrationPunish_legal_audit"
+
+    - nodeId: "administrationPunish_legal_audit"
+      nodeName: "行政处罚决定审批(法制)"
+      nodeCode: 3003
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "administrationPunish_chargePerson_audit"
+
+    - nodeId: "administrationPunish_chargePerson_audit"
+      nodeName: "行政处罚决定审批(负责人/集体讨论)"
+      nodeCode: 3004
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "administrationPunish_decision"
+
+    - nodeId: "administrationPunish_decision"
+      nodeName: "做出行政处罚决定"
+      nodeCode: 3005
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "administrationPunish_send"
+
+    - nodeId: "administrationPunish_send"
+      nodeName: "行政处罚决定送达"
+      nodeCode: 3006
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        punish: "administrationPunish_execute"
+        nopunish: "caseClose_apply"
+
+    - nodeId: "administrationPunish_execute"
+      nodeName: "行政处罚决定执行"
+      nodeCode: 3007
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "caseClose_apply"
+
+    # 结案 阶段 ---------------------------------------------------------------------------------------
+    - nodeId: "caseClose_apply"
+      nodeName: "结案申请"
+      nodeCode: 4000
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "caseClose_department_audit"
+
+    - nodeId: "caseClose_department_audit"
+      nodeName: "结案申请(科室审核)"
+      nodeCode: 4001
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "caseClose_legal_audit"
+
+    - nodeId: "caseClose_legal_audit"
+      nodeName: "结案申请(法制审核)"
+      nodeCode: 4002
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "caseClose_chargePerson_audit"
+
+    - nodeId: "caseClose_chargePerson_audit"
+      nodeName: "结案申请(负责人审核)"
+      nodeCode: 4003
+      requireSubmit: true
+      candidateGroup: [1]
+      fallbackAble: true
+      nexts:
+        pass: "end"
+
+    # 非业务性的目标节点 -----------------------------------------------------------------
+    - nodeId: "start"
+      nodeName: "开始"
+      nodeCode: 100
+      nodeType: "startEvent"
+      nexts:
+        pass: "filingCase_apply"
+
+    - nodeId: "end"
+      nodeName: "结束"
+      nodeCode: 200
+      nodeType: "endEvent"
+
+    - nodeId: "terminate"
+      nodeName: "案件终止"
+      nodeCode: 201
+      nodeType: "endEvent"
+
+    - nodeId: "revoke"
+      nodeName: "案件撤销"
+      nodeCode: 202
+      nodeType: "endEvent"
+
+    - nodeId: "suspend"
+      nodeName: "案件中止"
+      nodeCode: 300
+      nodeType: "suspendEvent"
+
+    - nodeId: "delay"
+      nodeName: "案件延期"
+      nodeCode: 301
+      nodeType: "delayEvent"

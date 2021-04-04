@@ -1,0 +1,27 @@
+server:
+  port: 8761
+#  servlet:
+#    context-path: /eureka
+spring:
+  application:
+    name: eureka-demo # 服务名
+# 配置eureka服务 需要账户访问
+  security:
+    user:
+      name: nullpoint
+      password: eureka
+
+
+
+# eureka config
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true # 不使用主机名定义注册中地址, 使用ip地址形式, 开启后使用ip-address地址, 如果没有ip-address则自动获取除环路ip外的第一个ip
+    # ip-address:
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    register-with-eureka: false # 禁止自己当做服务注册
+    fetch-registry: false # 屏蔽注册信息
+    service-url:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/  #服务地址

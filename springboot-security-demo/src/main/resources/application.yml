@@ -1,0 +1,29 @@
+# server
+server: 
+  port: 8080
+  servlet:
+    session:
+      timeout: 2520000
+    # 服务访问根域名
+#    context-path: /sod
+      
+
+spring:
+  # 服务名
+  application:
+    name: springboot-oauth-demo
+
+  # redis配置
+  redis:
+    database: 10
+    host: 47.104.75.227
+    port: 6379
+    password: dingdang
+    timeout: 3000
+    # redis连接池配置
+    lettuce:
+      pool:
+        max-active: 200 #连接池最大连接数（使用负值表示没有限制）
+        max-idle: 20 # 连接池中的最大空闲连接
+        min-idle: 5 #连接池中的最小空闲连接
+        max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）

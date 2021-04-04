@@ -1,0 +1,46 @@
+server:
+  port: 9023
+spring:
+  application:
+    name: security-oauth2
+
+  # mysql database config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/springboot-demo
+
+
+# mybatis config
+mybatis-plus:
+  # 扫描 mapper.xml
+  # mapper-locations: classpath*:mapping/**/*Mapper.xml
+  configuration:
+    # enable camel case
+    map-underscore-to-camel-case: true
+
+
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+# security oauth2
+#security:
+#  oauth2:
+#    # 对客户端配置 , 客户端可以理解成前端或者用户
+#    client:
+#      registered-redirect-uri: http://example.com
+#      client-id: oauth # 客户端id
+#      client-secret: oauth # 客户端密钥
+#      scope: all # 授权范围
+#      access-token-validity-seconds: 6000 # access_token 有效时间
+#      refresh-token-validity-seconds: 6000 # refresh_token 有效时间
+#      grant-type: authorization_code,password # 授权方式
+#      resource-ids: oauth2 # 可以访问的资源id
+#    authorization:
+#      check-token-access: isAuthenticated() # 允许使用 /oauth/check_token 端点

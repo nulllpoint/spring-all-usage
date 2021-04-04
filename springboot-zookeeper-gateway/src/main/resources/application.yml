@@ -1,0 +1,32 @@
+server:
+  port: 9022
+spring:
+  application:
+    name: zookeeper-gateway-demo
+  # zookeeper client config
+  cloud:
+    zookeeper:
+      connect-string: 127.0.0.1:2181
+    # gateway config
+    gateway:
+      # 跨域配置
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowCredentials: true
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      # 服务发现配置
+      discovery:
+        locator:
+          enabled: true # 结合服务发现组件, 开启通过其他服务的 service id 来转发服务请求, 默认false
+          lower-case-service-id: true # 开启匹配小写 服务实例名 service id, 默认false
+      # 路由地址配置
+      routes:
+        - id: zookeeper-client-demo
+          uri: lb://zookeeper-client-demo
+          predicates:
+            - Path=/nullpoint/zookeeper-client/api/**
+          filters:
+            - StripPrefix=3

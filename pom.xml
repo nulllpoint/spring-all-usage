@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.9.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+
+    <groupId>com.demo</groupId>
+    <artifactId>java-spring-all-demo</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <description>springboot demo</description>
+
+    <modules>
+        <module>springboot-actuator</module>
+        <module>springboot-security</module>
+        <module>springboot-eureka</module>
+        <module>springboot-eureka-client</module>
+        <module>springboot-common</module>
+        <module>springboot-gateway</module>
+        <module>springboot-zookeeper</module>
+        <module>springboot-zookeeper-gateway</module>
+        <module>springboot-security-oauth2</module>
+        <module>springboot-swagger</module>
+        <module>springboot-flowable-modeler</module>
+        <module>springboot-oauth-demo</module>
+        <module>springboot-demo</module>
+    </modules>
+
+    <properties>
+        <lombok.version>1.18.12</lombok.version>
+        <rocketmq-spring-boot-starter-version>2.0.3</rocketmq-spring-boot-starter-version>
+        <mysql.version>8.0.17</mysql.version>
+        <java.version>1.8</java.version>
+        <jdk.version>1.8</jdk.version>
+        <springboot.version>2.1.9.RELEASE</springboot.version>
+        <springcloud.version>Greenwich.SR3</springcloud.version>
+        <eureka-server.version>2.2.3.RELEASE</eureka-server.version>
+        <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.slf4j-version>1.7.25</org.slf4j-version>
+        <log4j-to-slf4j.version>2.10.0</log4j-to-slf4j.version>
+        <slf4j.version>1.7.2</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+        <junit.version>4.12</junit.version>
+        <commons-codec.version>1.13</commons-codec.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <commons-pool2.version>2.4.2</commons-pool2.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <wstx-asl.version>4.0.6</wstx-asl.version>
+        <bcprov.version>1.46</bcprov.version>
+        <xfire-core.version>1.2.6</xfire-core.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <security-jwt.version>1.1.1.RELEASE</security-jwt.version>
+        <guava.version>28.0-jre</guava.version>
+        <druid.version>1.1.18</druid.version>
+        <json-lib.version>2.4</json-lib.version>
+        <pagehelper.version>1.2.12</pagehelper.version>
+        <jedis.version>2.9.1</jedis.version>
+        <fastjson.version>1.2.59</fastjson.version>
+        <jmimemagic.version>0.1.2</jmimemagic.version>
+        <qiniu.version>7.2.23</qiniu.version>
+        <google-zxing.version>3.4.0</google-zxing.version>
+        <alipay.version>3.7.110.ALL</alipay.version>
+        <aliyun-core.version>4.4.2</aliyun-core.version>
+        <aliyun-push.version>3.10.1</aliyun-push.version>
+        <aliyun-dysmsapi.version>1.1.0</aliyun-dysmsapi.version>
+        <pooled-jms.version>1.0.6</pooled-jms.version>
+        <dom4j.version>1.6.1</dom4j.version>
+        <hibernate.version>4.2.0.Final</hibernate.version>
+        <swagger.version>2.9.2</swagger.version>
+        <swagger-annotations.version>1.5.24</swagger-annotations.version>
+        <swagger-models.version>1.5.24</swagger-models.version>
+        <swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version>
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <mybatis.version>2.1.3</mybatis.version>
+        <mybatisplus.version>3.4.0</mybatisplus.version>
+        <h2database.version>1.4.200</h2database.version>
+        <log4j-version>1.2.14</log4j-version>
+        <orika.version>1.5.4</orika.version>
+        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <apache-poi.version>3.15</apache-poi.version>
+        <hutool.version>5.0.4</hutool.version>
+        <velocity.version>1.7</velocity.version>
+        <flowable.version>6.4.1</flowable.version>
+    </properties>
+
+    <!--对版本进行管理，不会实际引入jar-->
+    <dependencyManagement>
+        <dependencies>
+            <!-- spring cloud 基础依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${springcloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- druid数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- mysql 驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- mybatis jpa-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+            <!--mybatis plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatisplus.version}</version>
+            </dependency>
+
+            <!-- h2 database-->
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2database.version}</version>
+            </dependency>
+
+            <!-- fastjson工具包 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- commons -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <!--JSON WEB TOKEN -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-jwt</artifactId>
+                <version>${security-jwt.version}</version>
+            </dependency>
+
+            <!-- dom4j -->
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
+            </dependency>
+
+            <!-- flowable 工作流相关-->
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-springboot-starter</artifactId>
+                <version>${flowable.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-ui-modeler-logic</artifactId>
+                <version>${flowable.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-ui-modeler-rest</artifactId>
+                <version>${flowable.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-ui-modeler-conf</artifactId>
+                <version>${flowable.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+    <build>
+        <finalName>${project.name}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <!-- maven 编译插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!--动态打包配置插件 -->
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>$</delimiters>
+                </configuration>
+            </plugin>-->
+
+            <!-- springboot 热启动插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+    <!--<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven‐compiler‐plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven‐resources‐plugin</artifactId>
+                <configuration>
+                    <encoding>utf‐8</encoding>
+                    <useDefaultDelimiters>true</useDefaultDelimiters>
+                    <resources>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <directory>src/main/java</directory>
+                            <includes>
+                                <include>**/*.xml</include>
+                            </includes>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+            <plugin>
+                &lt;!&ndash;要通过maven进行打包操作 需要这个插件&ndash;&gt;
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>-->
+
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun-nexus</name>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <layout>default</layout>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+        <!--<repository>
+            <id>nexus</id>
+            <name>nexus</name>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <layout>default</layout>
+            <url>http://47.104.136.19:8081/nexus/content/groups/public</url>
+        </repository>-->
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <layout>default</layout>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </pluginRepository>
+        <!--<pluginRepository>
+            <id>nexus</id>
+            <name>nexus</name>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <layout>default</layout>
+            <url>http://47.104.136.19:8081/nexus/content/groups/public</url>
+        </pluginRepository>-->
+    </pluginRepositories>
+</project>

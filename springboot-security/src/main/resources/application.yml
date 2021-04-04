@@ -1,0 +1,43 @@
+server:
+  port: 9010
+#  servlet:
+#    context-path: /security-demo
+spring:
+  application:
+    name: security-demo
+
+  # mysql database config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/springboot-demo
+    # alibaba druid mysql datasource pool
+    druid:
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        allow: 127.0.0.1
+        login-username: test
+        login-password: test
+        reset-enable: false
+
+
+  # 视图解析器配置
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+
+# mybatis config
+mybatis-plus:
+  # 扫描 mapper.xml
+  # mapper-locations: classpath*:mapping/**/*Mapper.xml
+  configuration:
+    # enable camel case
+    map-underscore-to-camel-case: true
+
+
+
+

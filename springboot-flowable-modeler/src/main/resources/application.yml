@@ -1,0 +1,34 @@
+# server config
+server:
+  port: 11111
+  servlet:
+    context-path: /flowable-modeler
+
+spring:
+  # database config
+  datasource:
+    driver-class-name: org.h2.Driver
+    # url: jdbc:h2:~/.springboot-flowable-modeler/h2database # 不允许除项目自身外的客户端链接
+    url: jdbc:h2:./.springboot-flowable-modeler-h2db/db;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=11110;DB_CLOSE_DELAY=-1 # 为多链接模式
+    username: flowable
+    password: flowable
+    hikari:
+      max-lifetime: 600000 # 10 minutes
+      idle-timeout: 300000 # 5minus
+      minimum-idle: 5
+      maximum-pool-size: 50
+      # test query for H2, MySQL, PostgreSQL and Microsoft SQL Server
+      #spring.datasource.hikari.connection-test-query=select 1
+      # test query for Oracle
+      #spring.datasource.hikari.connection-test-query=SELECT 1 FROM DUAL
+      # test query for DB2
+      #spring.datasource.hikari.connection-test-query=SELECT current date FROM sysibm.sysdummy1
+
+  h2:
+    console:
+      enabled: true # 启用控制台
+      path: /h2databse # 控制台可用路径
+
+  servlet:
+    multipart:
+      max-file-size: 50MB # 支持的上传的最大文件大小
